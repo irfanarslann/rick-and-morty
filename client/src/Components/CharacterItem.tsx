@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 type Character = {
   character: {
@@ -17,7 +17,7 @@ type Character = {
   };
 };
 
-const CharacterItem: FC<Character> = ({ character }) => {
+const CharacterItem: FC<Character> = memo(({ character }) => {
   return (
     <div className="character">
       <img src={character.image} alt="" />
@@ -36,6 +36,6 @@ const CharacterItem: FC<Character> = ({ character }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CharacterItem;

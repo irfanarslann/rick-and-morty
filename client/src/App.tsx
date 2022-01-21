@@ -1,21 +1,20 @@
 import { NetworkStatus } from "@apollo/client";
 import { useState } from "react";
-import { InView } from "react-intersection-observer";
-import CharacterItem from "./Components/CharacterItem";
+
+import CharacterList from "./Components/CharacterList";
 import Filter from "./Components/Filter";
+import FilterButton from "./Components/FilterButton";
 import Loading from "./Components/Loading";
 import { useFetch } from "./utils/useFetch";
 const App = () => {
-  const [fullyLoaded, setFullyLoaded] = useState<boolean>(false);
-  const [pageNumber, setPageNumber] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(0);
   const [name, setName] = useState<string>("");
-  const [filterModalActive, setfilterModalActive] = useState<boolean>(false);
+  const [filterModalActive, setFilterModalActive] = useState<boolean>(false);
 
   const { data, networkStatus, error, fetchMore } = useFetch({
+    offset,
     name,
-    pageNumber,
   });
-
   if (networkStatus === NetworkStatus.loading) {
     return <Loading />;
   }
@@ -31,45 +30,17 @@ const App = () => {
           setName={setName}
           name={name}
           modalActive={filterModalActive}
-          setfilterModalActive={setfilterModalActive}
-          setPageNumber={setPageNumber}
+          setfilterModalActive={setFilterModalActive}
+          setOffset={setOffset}
         />
-        <div className="filter-button">
-          {name === "" ? <h1>Rick And Morty</h1> : <h1>{name}</h1>}
+        <FilterButton name={name} setFilterModalActive={setFilterModalActive} />
 
-          <i
-            className="fa fa-filter"
-            aria-hidden="true"
-            onClick={() => setfilterModalActive(true)}
-          ></i>
-        </div>
-
-        <div className="list">
-          {data &&
-            data.characters.map((character: any) => (
-              <CharacterItem key={character.id} character={character} />
-            ))}
-        </div>
-        {data &&
-          networkStatus !== NetworkStatus.fetchMore &&
-          data.characters.length % 20 === 0 &&
-          !fullyLoaded && (
-            <InView
-              onChange={async (inView) => {
-                if (inView) {
-                  const result = await fetchMore({
-                    variables: {
-                      pageNumber,
-                      name,
-                    },
-                  });
-
-                  setFullyLoaded(!result.data.characters.length);
-                  setPageNumber(pageNumber + 1);
-                }
-              }}
-            />
-          )}
+        <CharacterList
+          data={data}
+          fetchMore={fetchMore}
+          name={name}
+          networkStatus={networkStatus}
+        />
       </div>
     </>
   );

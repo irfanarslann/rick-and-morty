@@ -1,17 +1,17 @@
 import { FC } from "react";
-type Types = {
+interface Types {
   setName: Function;
   name: string;
   modalActive: boolean;
   setfilterModalActive: Function;
-  setPageNumber: Function;
-};
+  setOffset: Function;
+}
 const Filter: FC<Types> = ({
   setName,
   name,
   modalActive,
   setfilterModalActive,
-  setPageNumber,
+  setOffset,
 }) => {
   return (
     <div className="modal" style={{ display: modalActive ? "block" : "none" }}>
@@ -35,7 +35,7 @@ const Filter: FC<Types> = ({
               name="Morty"
               value="morty"
               onChange={(e) => {
-                setPageNumber(0);
+                setOffset(0);
                 setName("Morty");
               }}
               checked={name === "Morty"}
@@ -49,7 +49,7 @@ const Filter: FC<Types> = ({
               name="rick"
               value="rick"
               onChange={(e) => {
-                setPageNumber(0);
+                setOffset(0);
                 setName("Rick");
               }}
               checked={name === "Rick"}

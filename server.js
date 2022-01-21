@@ -1,5 +1,5 @@
-const { ApolloServer, gql } = require("apollo-server");
-const { typeDefs, resolvers } = require("./GQLSchema/Schema");
+const { ApolloServer } = require("apollo-server");
+const { typeDefs, resolvers } = require("./gql/Schema");
 const server = new ApolloServer({ typeDefs, resolvers });
 
 server.listen().then(({ url }) => {

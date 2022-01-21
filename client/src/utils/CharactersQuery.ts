@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 export const LIST_CHARACTERS = gql`
-  query ListCharacters($pageNumber: Int!, $name: String) {
-    characters(pageNumber: $pageNumber, name: $name) {
+  query ListCharacters($offset: Int, $name: String) {
+    characters(offset: $offset, name: $name) {
       id
       name
       status

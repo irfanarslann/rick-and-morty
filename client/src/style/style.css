@@ -212,14 +212,14 @@
 .error-message {
   text-align: center;
   margin-top: 20px;
-  background-color: #F8D7DA;
-  border-color: #F5C6CB;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
   border-radius: 5px;
   font-size: 15px;
   padding: 10px;
   text-transform: capitalize;
   margin-bottom: 25px;
   font-weight: 400;
-  color: #9D1C59;
+  color: #9d1c59;
 }
 /*# sourceMappingURL=style.css.map */
