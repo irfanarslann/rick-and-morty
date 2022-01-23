@@ -24,25 +24,25 @@ const App = () => {
   }
 
   return (
-    <>
-      <div className="container">
-        <Filter
-          setName={setName}
-          name={name}
-          modalActive={filterModalActive}
-          setfilterModalActive={setFilterModalActive}
-          setOffset={setOffset}
-        />
-        <FilterButton name={name} setFilterModalActive={setFilterModalActive} />
 
-        <CharacterList
-          data={data}
-          fetchMore={fetchMore}
-          name={name}
-          networkStatus={networkStatus}
-        />
-      </div>
-    </>
+    <div className="container">
+      <Filter
+        setName={setName}
+        name={name}
+        modalActive={filterModalActive}
+        setfilterModalActive={setFilterModalActive}
+        setOffset={setOffset}
+      />
+      <FilterButton name={name} setFilterModalActive={setFilterModalActive} />
+
+      <CharacterList
+        data={data}
+        fetchMore={fetchMore}
+        name={name}
+        networkStatus={networkStatus}
+      />
+    </div>
+
   );
 };
 
