@@ -25,7 +25,7 @@ const App = () => {
 
   return (
 
-    <div className="container">
+    <div data-testid="app-test" className="container">
       <Filter
         setName={setName}
         name={name}

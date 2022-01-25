@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className="loading-spin-container">
+    <div data-testid='loading-test' className="loading-spin-container">
       <div className="loading-spin"></div>
     </div>
   );
